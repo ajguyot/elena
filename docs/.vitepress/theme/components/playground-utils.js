@@ -6,18 +6,40 @@ const _elenaUrl =
   typeof Blob !== "undefined"
     ? URL.createObjectURL(new Blob([_cleanSource], { type: "text/javascript" }))
     : `data:text/javascript;charset=utf-8,${encodeURIComponent(_cleanSource)}`;
-const _importMap = JSON.stringify({ imports: { "@elenajs/core": _elenaUrl } });
-
 /**
  * Generate the full srcdoc HTML string for the preview iframe.
+ *
+ * The CSS panel content is available to examples via "./styles.css":
+ *   - JS: import styles from "./styles.css" with { type: "css" };
+ *   - HTML: <link rel="stylesheet" href="./styles.css">
  */
 export function generateSrcdoc(js, css, htmlContent) {
+  // Build a JS module that exports a CSSStyleSheet from the CSS panel content,
+  // mirroring what @elenajs/bundler produces for CSS Module Script imports.
+  const cssModuleCode = `const s=new CSSStyleSheet();s.replaceSync(${JSON.stringify(css)});export default s;`;
+  const cssModuleUrl = `data:text/javascript;charset=utf-8,${encodeURIComponent(cssModuleCode)}`;
+  const importMap = JSON.stringify({
+    imports: { "@elenajs/core": _elenaUrl, "./styles.css": cssModuleUrl },
+  });
+
+  // Strip `with { type: "css" }` import assertions — the import map resolves
+  // "./styles.css" to a JS module, so a CSS type assertion would be rejected.
+  const processedJs = js.replace(/\s+(?:with|assert)\s*\{\s*type:\s*["']css["']\s*\}/g, "");
+
+  // Replace href="./styles.css" in HTML with a CSS data URL so that
+  // <link rel="stylesheet" href="./styles.css"> works inside Declarative Shadow DOM.
+  const cssDataUrl = `data:text/css;charset=utf-8,${encodeURIComponent(css)}`;
+  const processedHtml = htmlContent.replace(
+    /href=["']\.\/styles\.css["']/g,
+    `href="${cssDataUrl}"`
+  );
+
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="importmap">${_importMap}</script>
+<script type="importmap">${importMap}</script>
 <style>
 body {
   font-family: system-ui, -apple-system, sans-serif;
@@ -28,7 +50,7 @@ ${css}
 </style>
 </head>
 <body>
-${htmlContent}
+${processedHtml}
 <script>
 window.addEventListener("error", function (e) {
   document.body.innerHTML =
@@ -44,7 +66,7 @@ window.addEventListener("unhandledrejection", function (e) {
 });
 </script>
 <script type="module">
-${js}
+${processedJs}
 </script>
 </body>
 </html>`;
@@ -96,20 +118,46 @@ export function debounce(fn, delay) {
 }
 
 /**
- * Rewrite bare `@elenajs/core` imports to the unpkg CDN URL.
+ * Replace <link rel="stylesheet" href="./styles.css"> with inline <style> blocks
+ * so exported HTML is self-contained.
  */
-function rewriteImports(js) {
+function inlineStylesheetLinks(html, css) {
+  if (!css) {
+    return html;
+  }
+  return html.replace(
+    /<link\s+(?:rel=["']stylesheet["']\s+href=["']\.\/styles\.css["']|href=["']\.\/styles\.css["']\s+rel=["']stylesheet["'])\s*\/?>/g,
+    `<style>\n${css}\n</style>`
+  );
+}
+
+/**
+ * Rewrite bare `@elenajs/core` imports to the unpkg CDN URL and
+ * CSS Module Script imports to inline CSSStyleSheet construction.
+ */
+function rewriteImports(js, css) {
   const cdnUrl = "https://unpkg.com/@elenajs/core/bundle";
-  return js
+  let result = js
     .replace(/from\s+["']@elenajs\/core["']/g, `from "${cdnUrl}"`)
     .replace(/import\s*\(\s*["']@elenajs\/core["']\s*\)/g, `import("${cdnUrl}")`);
+
+  // Replace CSS Module Script imports with inline CSSStyleSheet construction.
+  if (css) {
+    result = result.replace(
+      /import\s+(\w+)\s+from\s+["']\.\/styles\.css["'](?:\s+(?:with|assert)\s*\{\s*type:\s*["']css["']\s*\})?\s*;?/g,
+      `const $1 = (() => { const s = new CSSStyleSheet(); s.replaceSync(${JSON.stringify(css)}); return s; })();`
+    );
+  }
+
+  return result;
 }
 
 /**
  * Download the current playground state as a standalone HTML file.
  */
 export function downloadProject(title, js, css, html) {
-  const rewrittenJs = rewriteImports(js);
+  const rewrittenJs = rewriteImports(js, css);
+  const rewrittenHtml = inlineStylesheetLinks(html, css);
   const cssBlock = css ? `<style>\n${css}\n</style>\n` : "";
   const file = `<!doctype html>
 <html lang="en">
@@ -119,7 +167,7 @@ export function downloadProject(title, js, css, html) {
 <title>${title || "Elena Component"}</title>
 ${cssBlock}</head>
 <body>
-${html}
+${rewrittenHtml}
 <script type="module">
 ${rewrittenJs}
 </script>
@@ -188,11 +236,12 @@ export function clearState(id) {
  * works standalone in CodePen. JS goes in its own panel with module mode.
  */
 export function buildCodePenData(title, js, css, html) {
-  const rewrittenJs = rewriteImports(js);
+  const rewrittenJs = rewriteImports(js, css);
+  const rewrittenHtml = inlineStylesheetLinks(html, css);
 
   return JSON.stringify({
     title: `Elena | ${title || "Component"}`,
-    html: html || "",
+    html: rewrittenHtml || "",
     css: css || "",
     js: rewrittenJs || "",
     js_module: true,
