@@ -4,6 +4,18 @@
   "description": "Elena is a simple, tiny library for building Progressive Web Components.",
   "author": "Elena <hi@elenajs.com>",
   "homepage": "https://elenajs.com/",
+  "keywords": [
+    "progressive web components",
+    "custom elements manifest",
+    "progressive enhancement",
+    "custom elements",
+    "web components",
+    "design system",
+    "javascript",
+    "typescript",
+    "elena",
+    "ssr"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/getelena/elena.git",
