@@ -18,65 +18,41 @@ export default class MyButton extends Elena(HTMLElement) {
 MyButton.define();`,
   html: `<my-button>
   <template shadowrootmode="open">
-    <style>
-      /* In production, these would live in a separate 
-         stylesheet loaded via <link> in the template. */
-      button {
-        font-family: system-ui, sans-serif;
-        font-size: 0.875rem;
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        border: none;
-        background: #5a44d4;
-        color: #fff;
-        cursor: pointer;
-      }
-      button:hover {
-        filter: brightness(0.9);
-      }
-      button:active {
-        opacity: 0.7;
-      }
-      button:focus {
-        outline: 2px solid #5a44d4;
-        outline-offset: 1px;
-      }
-    </style>
+    <link rel="stylesheet" href="./styles.css">
     <button><slot></slot></button>
   </template>
   Click me
 </my-button>
 
-<my-button>
+<my-button style="--button-bg: #eaecf0; --button-text: #172b4d;">
   <template shadowrootmode="open">
-    <style>
-      /* In production, these would live in a separate 
-         stylesheet loaded via <link> in the template. */
-      button {
-        font-family: system-ui, sans-serif;
-        font-size: 0.875rem;
-        font-weight: 500;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        border: none;
-        background: #eaecf0;
-        color: #172b4d;
-        cursor: pointer;
-      }
-      button:hover {
-        filter: brightness(0.95);
-      }
-      button:active {
-        opacity: 0.7;
-      }
-      button:focus {
-        outline: 2px solid #5a44d4;
-        outline-offset: 1px;
-      }
-    </style>
+    <link rel="stylesheet" href="./styles.css">
     <button><slot></slot></button>
   </template>
   Cancel
 </my-button>`,
+  css: `button {
+  font-family: system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: var(--button-bg, #5a44d4);
+  color: var(--button-text, #fff);
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+button:active {
+  opacity: 0.7;
+}
+
+button:focus {
+  outline: 2px solid #5a44d4;
+  outline-offset: 1px;
+}`,
 };
