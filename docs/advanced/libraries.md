@@ -77,23 +77,28 @@ export default {
   bundle: "src/index.js",
 
   // Additional Rollup plugins appended after Elena’s built-in set.
-  // plugins: [],
+  plugins: [],
 
   // Custom Elements Manifest options. Set to false to skip entirely.
-  // analyze: {
-  //   plugins: [],
-  // },
+  analyze: {
+    plugins: [],
+  },
 
   // Browserslist targets for transpilation. Enables syntax transforms
   // (e.g. class fields, optional chaining) to widen browser support.
-  // target: ["chrome 71", "firefox 69", "safari 12.1"],
+  target: ["chrome 71", "firefox 69", "safari 12.1"],
 
   // Custom Terser minifier options, merged with the defaults.
-  // terser: { ecma: 2020, module: true },
+  terser: { ecma: 2020, module: true },
 
   // Banner comment prepended to bundle output files.
   // Use a @license tag so minifiers preserve it.
-  // banner: `/** @license MIT */`,
+  banner: `/** @license MIT */`,
+
+  // Controls how components are registered.
+  // "auto" (default) preserves .define() calls in the output.
+  // "scoped" strips .define() calls and generates a register.js helper.
+  registration: "auto",
 };
 ```
 
@@ -113,6 +118,7 @@ export default {
 | `target`           | `string \| string[] \| false` | `false`          | Browserslist target(s) for transpilation. When set, enables syntax transforms (e.g. class fields, optional chaining) via `@babel/preset-env`. Example: `["chrome 71", "safari 12.1"]`. |
 | `terser`           | `object`                      | `{ ecma: 2020, module: true }` | Custom Terser minifier options, merged with the defaults. See the [Terser API docs](https://terser.org/docs/api-reference/) for available options.                      |
 | `banner`           | `string \| false`             | `false`          | Banner comment prepended to `index.js` and `bundle.js` output files. Use a `@license` JSDoc tag so minifiers preserve it.                                               |
+| `registration`     | `"auto" \| "scoped"`          | `"auto"`         | Controls how components are registered. `"auto"` preserves `.define()` calls in the output. `"scoped"` strips `.define()` calls and generates a `register.js` with a `defineAll(registry?)` helper for [scoped registry](/components/options#scoped-registration) usage. |
 
 ## Build output
 
@@ -127,9 +133,41 @@ Running `elena build` produces:
 | `dist/custom-elements.json` | [Custom Elements Manifest](https://custom-elements-manifest.open-wc.org/) describing all components. |
 | `dist/custom-elements.d.ts` | JSX integration types mapping tag names to prop types.                                               |
 | `dist/*.d.ts`               | Per-component TypeScript declarations with typed props and events.                                   |
+| `dist/register.js`          | Registration helper with `defineAll(registry?)` and re-exported component classes. Only generated when using `registration: "scoped"`. |
 
 > [!TIP]
 > CSS files that are imported as CSS Module Scripts (`import styles from "./button.css" with { type: "css" }`) for Shadow DOM use are automatically excluded from `bundle.css`. These files are instead inlined as `CSSStyleSheet` objects in the JavaScript output. Individual `.css` files are still emitted.
+
+## Scoped registry builds
+
+When `registration: "scoped"` is set, the bundler strips `.define()` calls and side-effect component imports from the output. Components are exported as bare classes, and a `register.js` helper is generated:
+
+```js
+export default {
+  registration: "scoped",
+};
+```
+
+The generated `register.js` exports a `defineAll()` function and re-exports all component classes:
+
+```js
+import { defineAll } from "@elenajs/components/register";
+
+const registry = new CustomElementRegistry();
+defineAll(registry);
+```
+
+You can also import individual classes for selective registration:
+
+```js
+import { Button, Spinner } from "@elenajs/components/register";
+
+const registry = new CustomElementRegistry();
+Button.define(registry);
+Spinner.define(registry);
+```
+
+This can be useful when multiple versions of the same library need to coexist on a single application. See [Scoped registration](/components/options#scoped-registration) for more details.
 
 ## TypeScript support
 
@@ -276,6 +314,15 @@ Or import the full CSS bundle:
 
 ```css
 @import "@elenajs/components/dist/bundle.css";
+```
+
+When a library is built with `registration: "scoped"`, import from `register.js` to control where components are registered:
+
+```js
+import { defineAll } from "@elenajs/components/register";
+
+const registry = new CustomElementRegistry();
+defineAll(registry);
 ```
 
 The source code is in `packages/components/` of the [Elena monorepo](https://github.com/getelena/elena) and serves as an example of how to structure, build, and publish a library with `@elenajs/bundler`.
