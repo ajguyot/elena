@@ -2,6 +2,7 @@ export default {
   id: "baseline-support",
   title: "Baseline Support",
   js: `import { Elena, html, unsafeHTML, nothing } from "@elenajs/core";
+import styles from "./styles.css" with { type: "css" };
 
 /**
  * Baseline Support component that is based on the official <baseline-status>
@@ -22,6 +23,7 @@ export default class BaselineSupport extends Elena(HTMLElement) {
   static tagName = "baseline-support";
   static props = ["featureid"];
   static shadow = "open";
+  static styles = styles;
 
   /**
    * The web-features feature ID (e.g. "grid", "dialog").
@@ -31,192 +33,24 @@ export default class BaselineSupport extends Elena(HTMLElement) {
    */
   featureid = "";
 
-  /**
-   * Styles for the baseline support web component.
-   * If you use @elenajs/bundler, you can also import them using:
-   * 
-   * import styles from "./baseline-support.css" with { type: "css" };
-   * static styles = styles;
-   */
-  static styles = \`
-    :host {
-      --baseline-color-limited: light-dark(#ea8600, #f09418);
-      --baseline-color-newly: light-dark(#1a73e8, #4185ff);
-      --baseline-color-widely: light-dark(#1e8e3e, #24a446);
-      --baseline-color-no_data: light-dark(#707070, #868686);
-      --baseline-color-outline: light-dark(#d9d9d9, #d9d9d9);
-      --baseline-color-link: light-dark(#1a73e8, #5aa1ff);
-      --baseline-icon-limited-front: light-dark(#f09409, #f09409);
-      --baseline-icon-limited-back: light-dark(#c6c6c6, #565656);
-      --baseline-icon-widely-front: light-dark(#1ea446, #1ea446);
-      --baseline-icon-widely-back: light-dark(#c4eed0, #125225);
-      --baseline-icon-newly-front: light-dark(#1b6ef3, #4185ff);
-      --baseline-icon-newly-back: light-dark(#a8c7fa, #2d509e);
-      --baseline-icon-no_data: light-dark(#909090, #666666);
-
-      all: unset;
-      box-sizing: border-box;
-      color: inherit;
-      display: block;
-      border: solid 1px var(--baseline-color-outline);
-      border-radius: 8px;
-      inline-size: 100%;
-      padding: 16px 24px 0 24px;
-      max-inline-size: 800px;
-      margin-block-end: 1rem;
-      font-family: Roboto, sans-serif;
-      font-size: 14px;
-      font-style: normal;
-    }
-
-    .name {
-      font-weight: normal;
-      font-size: 20px;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    a,
-    a:active,
-    a:visited {
-      color: var(--baseline-color-link);
-    }
-
-    ::slotted(*) {
-      color: grey;
-      font-style: italic;
-      font-size: 80%;
-    }
-
-    .baseline-title {
-      gap: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      flex: 1;
-    }
-
-    .baseline-title {
-      flex: 1;
-    }
-
-    .baseline-title div:first-child {
-      display: flex;
-      align-items: center;
-      gap: 0.2rem;
-    }
-
-    .baseline-badge {
-      background: #3367d6;
-      color: #fff;
-      font-size: 11px;
-      padding: 0 4px;
-      border-radius: 2px;
-      text-transform: uppercase;
-      line-height: 20px;
-      margin-inline: 0.5rem;
-      white-space: nowrap;
-    }
-
-    .baseline-browsers {
-      font-size: 0;
-      max-inline-size: 200px;
-      display: flex;
-      gap: 16px;
-    }
-
-    .baseline-browsers span {
-      white-space: nowrap;
-    }
-
-    .support-no_data {
-      color: var(--baseline-color-no_data);
-    }
-
-    .support-unavailable {
-      color: var(--baseline-color-limited);
-    }
-
-    .support-newly {
-      color: var(--baseline-color-newly);
-    }
-
-    .support-widely,
-    .support-available {
-      color: var(--baseline-color-widely);
-    }
-
-    details > summary .open-icon {
-      inline-size: 10px;
-      block-size: 20px;
-      margin-inline-start: auto;
-      color: inherit;
-    }
-
-    @media (min-width: 420px) {
-      details > summary .open-icon {
-        margin-inline-start: 48px;
-      }
-    }
-
-    details > summary .open-icon svg {
-      transition: transform 0.3s;
-    }
-
-    details[open] summary .open-icon svg {
-      transform: rotate(180deg);
-    }
-
-    summary {
-      display: flex;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: space-between;
-      padding: 16px 0;
-    }
-
-    summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .signals-badge,
-    .signals-badge:visited,
-    .signals-badge:active {
-      text-decoration: none;
-      background: transparent;
-      color: inherit;
-      border-radius: 12px;
-      padding: 2px 8px;
-      font-size: 12px;
-      border: 1px solid var(--baseline-color-outline);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      line-height: 1.4;
-    }
-
-    .signals-badge:hover {
-      background: light-dark(#f5f5f5, #333);
-    }
-  \`;
-
   /** @internal */
   _data = null;
+
   /** @internal */
   _loading = true;
+
   /** @internal */
   _error = false;
+
   /** @internal */
   _status = "no_data";
+
   /** @internal */
   _name = "";
+
   /** @internal */
   _date = "";
+
   /** @internal */
   _abortController = null;
 
@@ -468,4 +302,168 @@ BaselineSupport.define();`,
 <baseline-support featureid="scope"></baseline-support>
 <baseline-support featureid="declarative-shadow-dom"></baseline-support>
 <baseline-support featureid="anchor-positioning"></baseline-support>`,
+  css: `:host {
+  --baseline-color-limited: light-dark(#ea8600, #f09418);
+  --baseline-color-newly: light-dark(#1a73e8, #4185ff);
+  --baseline-color-widely: light-dark(#1e8e3e, #24a446);
+  --baseline-color-no_data: light-dark(#707070, #868686);
+  --baseline-color-outline: light-dark(#d9d9d9, #d9d9d9);
+  --baseline-color-link: light-dark(#1a73e8, #5aa1ff);
+  --baseline-icon-limited-front: light-dark(#f09409, #f09409);
+  --baseline-icon-limited-back: light-dark(#c6c6c6, #565656);
+  --baseline-icon-widely-front: light-dark(#1ea446, #1ea446);
+  --baseline-icon-widely-back: light-dark(#c4eed0, #125225);
+  --baseline-icon-newly-front: light-dark(#1b6ef3, #4185ff);
+  --baseline-icon-newly-back: light-dark(#a8c7fa, #2d509e);
+  --baseline-icon-no_data: light-dark(#909090, #666666);
+
+  all: unset;
+  box-sizing: border-box;
+  color: inherit;
+  display: block;
+  border: solid 1px var(--baseline-color-outline);
+  border-radius: 8px;
+  inline-size: 100%;
+  padding: 16px 24px 0 24px;
+  max-inline-size: 800px;
+  margin-block-end: 1rem;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+}
+
+.name {
+  font-weight: normal;
+  font-size: 20px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a,
+a:active,
+a:visited {
+  color: var(--baseline-color-link);
+}
+
+::slotted(*) {
+  color: grey;
+  font-style: italic;
+  font-size: 80%;
+}
+
+.baseline-title {
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.baseline-title {
+  flex: 1;
+}
+
+.baseline-title div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.baseline-badge {
+  background: #3367d6;
+  color: #fff;
+  font-size: 11px;
+  padding: 0 4px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  line-height: 20px;
+  margin-inline: 0.5rem;
+  white-space: nowrap;
+}
+
+.baseline-browsers {
+  font-size: 0;
+  max-inline-size: 200px;
+  display: flex;
+  gap: 16px;
+}
+
+.baseline-browsers span {
+  white-space: nowrap;
+}
+
+.support-no_data {
+  color: var(--baseline-color-no_data);
+}
+
+.support-unavailable {
+  color: var(--baseline-color-limited);
+}
+
+.support-newly {
+  color: var(--baseline-color-newly);
+}
+
+.support-widely,
+.support-available {
+  color: var(--baseline-color-widely);
+}
+
+details > summary .open-icon {
+  inline-size: 10px;
+  block-size: 20px;
+  margin-inline-start: auto;
+  color: inherit;
+}
+
+@media (min-width: 420px) {
+  details > summary .open-icon {
+    margin-inline-start: 48px;
+  }
+}
+
+details > summary .open-icon svg {
+  transition: transform 0.3s;
+}
+
+details[open] summary .open-icon svg {
+  transform: rotate(180deg);
+}
+
+summary {
+  display: flex;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 16px 0;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.signals-badge,
+.signals-badge:visited,
+.signals-badge:active {
+  text-decoration: none;
+  background: transparent;
+  color: inherit;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 12px;
+  border: 1px solid var(--baseline-color-outline);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1.4;
+}
+
+.signals-badge:hover {
+  background: light-dark(#f5f5f5, #333);
+}`,
 };

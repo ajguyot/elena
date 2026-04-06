@@ -136,7 +136,7 @@ function onwarn(warning, warn) {
 /**
  * Build the plugin list for a single Rollup build target.
  *
- * @param {{ src: string; outdir: string; hasSummary: boolean; includeCssBundle: boolean; extraPlugins?: import("rollup").Plugin[]; hasTs?: boolean; target?: string | string[] | false }} opts
+ * @param {{ src: string; outdir: string; hasSummary: boolean; includeCssBundle: boolean; cssBundleFilename?: string; extraPlugins?: import("rollup").Plugin[]; hasTs?: boolean; target?: string | string[] | false }} opts
  * @returns {import("rollup").Plugin[]}
  */
 function buildPlugins({
@@ -144,6 +144,7 @@ function buildPlugins({
   outdir,
   hasSummary,
   includeCssBundle,
+  cssBundleFilename = "bundle.css",
   extraPlugins = [],
   hasTs = false,
   target = false,
@@ -177,7 +178,7 @@ function buildPlugins({
   plugins.push(cssStaticStylesPlugin(), terser(terserOpts), cssPlugin(src));
 
   if (includeCssBundle) {
-    plugins.push(cssBundlePlugin(src, "bundle.css"));
+    plugins.push(cssBundlePlugin(src, cssBundleFilename));
   }
 
   plugins.push(...extraPlugins);
@@ -201,6 +202,8 @@ export function createRollupConfig(options = {}) {
   const format = options.output?.format ?? "esm";
   const sourcemap = options.output?.sourcemap ?? true;
   let bundle = options.bundle !== undefined ? options.bundle : "src/index.js";
+  const bundleFilename = options.output?.filename ?? "bundle.js";
+  const cssBundleFilename = bundleFilename.replace(/\.js$/, ".css");
   const extraPlugins = options.plugins ?? [];
   const target = options.target ?? false;
   const terserOpts = options.terser ?? { ecma: 2020, module: true };
@@ -246,6 +249,7 @@ export function createRollupConfig(options = {}) {
           outdir,
           hasSummary: false,
           includeCssBundle: true,
+          cssBundleFilename,
           extraPlugins,
           hasTs,
           target,
@@ -284,7 +288,7 @@ export function createRollupConfig(options = {}) {
           terserOpts,
         }),
       ],
-      output: { banner, format, sourcemap, file: `${outdir}/bundle.js` },
+      output: { banner, format, sourcemap, file: `${outdir}/${bundleFilename}` },
       preserveEntrySignatures: "strict",
       treeshake: TREESHAKE,
       onwarn,

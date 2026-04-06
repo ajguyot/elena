@@ -17,6 +17,7 @@ import willUpdate from "./will-update.js";
 import firstUpdated from "./first-updated.js";
 import requestUpdate from "./request-update.js";
 import cssCustomProperties from "./css-custom-properties.js";
+import cssModuleScripts from "./css-module-scripts.js";
 import baselineSupport from "./baseline-support.js";
 import mixins from "./mixins.js";
 import shadowDom from "./shadow-dom.js";
@@ -44,7 +45,7 @@ export const examples = [
   },
   {
     category: "Styling",
-    items: [cssCustomProperties],
+    items: [cssCustomProperties, cssModuleScripts],
   },
   {
     category: "Advanced",

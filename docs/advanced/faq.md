@@ -76,14 +76,14 @@ Stencil’s standout feature is its output targets: it can generate framework-sp
 
 ### Elena vs Enhance
 
-[Enhance](https://enhance.dev) is an HTML-first full-stack web framework built on Architect. While both Elena and Enhance share a philosophy of progressive enhancement and Light DOM by default, they operate at very different levels: Elena is a client-side library for building standard web components, while Enhance is a server framework where components are pure functions that render HTML at request time.
+[Enhance](https://enhance.dev) is an HTML-first web component framework focused on server-side rendering. While both Elena and Enhance share a philosophy of progressive enhancement and Light DOM by default, they operate at very different levels: Elena is a client-side library for building standard web components, while Enhance renders components on the server as pure functions.
 
 | | Elena | Enhance |
 |---|---|---|
-| **Approach** | Runtime mixin | Server framework |
+| **Approach** | Runtime mixin | Server-side rendering |
 | **Size** | 2.9kB | No client runtime required; optional upgrade ~2-5kB |
-| **Language** | Vanilla JavaScript or TypeScript | JavaScript (Node.js, or WASM for other runtimes) |
-| **Build step** | Optional | No compile step; requires Enhance server or SSR engine |
+| **Language** | Vanilla JavaScript or TypeScript | JavaScript, or other language via WASM |
+| **Build step** | Optional | No compile step; requires Enhance SSR engine |
 | **Templating** | Native tagged template literals with auto-escaping | Pure functions returning HTML strings |
 | **DOM model** | Light DOM (Shadow DOM opt-in) | Light DOM (Shadow DOM opt-in) |
 | **Progressive enhancement** | HTML & CSS first, JavaScript enhances after | Server renders HTML, JavaScript optional |
@@ -91,11 +91,11 @@ Stencil’s standout feature is its output targets: it can generate framework-sp
 | **Prop reflection** | Reflects all; disable per-prop | Standard `observedAttributes` on client side |
 | **Style encapsulation** | `@scope` + `all: unset` | Server-side selector prefixing |
 | **API** | Static class fields + reactive properties | Pure functions on server; optional class-based upgrade on client |
-| **Portability** | Standard custom elements, works anywhere | Server components are framework-specific; client upgrades are standard |
+| **Portability** | Standard custom elements, works anywhere | Backend-agnostic SSR via WASM; client upgrades are standard |
 
-The fundamental difference is scope. Elena is a standalone library that works directly in the browser and can be used in any environment: static HTML, any framework, any server. Enhance, on the other hand, is a full-stack framework where components are tightly coupled to their server-side rendering engine. 
+The fundamental difference is scope. Elena is a standalone library that works directly in the browser and can be used in any environment: static HTML, any framework, any server. Enhance focuses on server-side rendering, with its WASM engine making it portable across backends.
 
-If you want portable web components that work independently of a specific backend, Elena might be a better fit. If you want a full-stack framework where component rendering is handled entirely by the server, Enhance offers that.
+If you want a client-side library for building portable web components, Elena might be a better fit. If you want backend-agnostic server rendering for web components, Enhance offers that. The two projects share enough philosophy that they could complement each other well.
 
 ## What is the performance like?
 
