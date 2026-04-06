@@ -1,7 +1,9 @@
-import { existsSync, readFileSync, rmSync } from "fs";
+import { spawnSync } from "child_process";
+import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { join } from "path";
+import { tmpdir } from "os";
 import { beforeAll, afterAll, describe, test, expect } from "vitest";
-import { setupBuild } from "./helpers.mjs";
+import { CLI, COMPONENTS_SRC, setupBuild } from "./helpers.mjs";
 
 describe('registration: "scoped"', () => {
   let tmpDir;
@@ -23,7 +25,7 @@ describe('registration: "scoped"', () => {
       expect(button).not.toMatch(/\.define\(\)/);
     });
 
-    test("individual modules do not contain side-effect imports", () => {
+    test("individual modules do not contain component side-effect imports", () => {
       const button = readFileSync(join(dist, "button.js"), "utf8");
       const bareImports = button.match(/^\s*import\s+["'][^"']+["']\s*;/gm);
       expect(bareImports).toBeNull();
@@ -77,5 +79,66 @@ describe('registration: "scoped"', () => {
       expect(existsSync(join(dist, "button.css"))).toBe(true);
       expect(existsSync(join(dist, "bundle.css"))).toBe(true);
     });
+  });
+});
+
+describe("scoped registration preserves non-component side-effect imports", () => {
+  let tmpDir;
+  let dist;
+
+  beforeAll(() => {
+    tmpDir = mkdtempSync(join(tmpdir(), "elena-bundler-test-"));
+    dist = join(tmpDir, "dist");
+
+    cpSync(COMPONENTS_SRC, join(tmpDir, "src"), { recursive: true });
+    writeFileSync(
+      join(tmpDir, "package.json"),
+      JSON.stringify({ name: "test-components", type: "module" })
+    );
+    writeFileSync(
+      join(tmpDir, "elena.config.mjs"),
+      `export default { registration: "scoped", analyze: false };`
+    );
+
+    // Add a non-component module with a side effect (no .define() call).
+    writeFileSync(join(tmpDir, "src", "setup.js"), `globalThis.__ELENA_SETUP__ = true;\n`);
+
+    // Import it as a bare side-effect import from the index.
+    const indexPath = join(tmpDir, "src", "index.js");
+    const indexContent = readFileSync(indexPath, "utf8");
+    writeFileSync(indexPath, `import "./setup.js";\n${indexContent}`);
+
+    const result = spawnSync("node", [CLI], {
+      cwd: tmpDir,
+      stdio: "pipe",
+      encoding: "utf8",
+    });
+
+    if (result.status !== 0) {
+      throw new Error(
+        `elena exited with status ${result.status}:\n${result.stderr || result.stdout}`
+      );
+    }
+  });
+
+  afterAll(() => {
+    if (tmpDir) {
+      rmSync(tmpDir, { recursive: true, force: true });
+    }
+  });
+
+  test("non-component side-effect import is preserved in the output", () => {
+    const index = readFileSync(join(dist, "index.js"), "utf8");
+    expect(index).toContain("./setup.js");
+  });
+
+  test("non-component module content is not corrupted", () => {
+    const setup = readFileSync(join(dist, "setup.js"), "utf8");
+    expect(setup).toContain("__ELENA_SETUP__");
+  });
+
+  test("component .define() calls are still stripped", () => {
+    const button = readFileSync(join(dist, "button.js"), "utf8");
+    expect(button).not.toMatch(/\.define\(\)/);
   });
 });
