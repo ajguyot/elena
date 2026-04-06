@@ -28,27 +28,47 @@ import { color } from "./common/color.js";
 import babel from "@rollup/plugin-babel";
 
 const TREESHAKE = {
-  moduleSideEffects: false,
   propertyReadSideEffects: false,
 };
 
-const DEFINE_CALL_RE = /^\s*\w+\.define\(\);\s*$/gm;
-const SIDE_EFFECT_IMPORT_RE = /^\s*import\s+["'][^"']+["']\s*;\s*$/gm;
+const DEFINE_CALL = /^\s*\w+\.define\(\);\s*$/gm;
+const SIDE_EFFECT_IMPORT = /^\s*import\s+["']([^"']+)["']\s*;\s*$/gm;
 
 /**
  * Rollup plugin that strips `.define()` calls and side-effect-only
- * component imports from the output. Used with `registration: "scoped"`.
+ * imports that resolve to Elena component modules (files containing
+ * `.define()` calls). Non-component side-effect imports (polyfills,
+ * CSS, setup scripts) are preserved.
+ *
+ * Used with `registration: "scoped"`.
  *
  * @returns {import("rollup").Plugin}
  */
 function stripRegistrationPlugin() {
   return {
     name: "elena-strip-registration",
-    transform(code, id) {
+    async transform(code, id) {
       if (!id.endsWith(".js") && !id.endsWith(".ts")) {
         return null;
       }
-      const stripped = code.replace(DEFINE_CALL_RE, "").replace(SIDE_EFFECT_IMPORT_RE, "");
+
+      let stripped = code.replace(DEFINE_CALL, "");
+
+      // Check each side-effect import: only strip if the resolved
+      // module contains a .define() call (i.e. it is a component).
+      const importMatches = [...stripped.matchAll(SIDE_EFFECT_IMPORT)];
+      for (const match of importMatches) {
+        const specifier = match[1];
+        const resolved = await this.resolve(specifier, id);
+        if (!resolved) {
+          continue;
+        }
+        const module = await this.load({ id: resolved.id });
+        if (module.code && /^\s*\w+\.define\(\);\s*$/m.test(module.code)) {
+          stripped = stripped.replace(match[0], "");
+        }
+      }
+
       if (stripped === code) {
         return null;
       }
