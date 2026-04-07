@@ -24,6 +24,19 @@
 
 <p align="center">Elena is a simple, tiny library for building <a href="https://elenajs.com/">Progressive Web Components</a>. Unlike most web component libraries, Elena doesn’t force JavaScript for everything. You can load HTML and CSS first, then use JavaScript to progressively add interactivity.</p>
 
+## Features
+
+- 🔋 **Extremely lightweight:** 2.9kB minified & compressed, simple and tiny by design.
+- 📈 **Progressively enhanced:** Renders HTML & CSS first, then hydrates with JavaScript.
+- 🫶 **Accessible by default:** Semantic HTML foundation with no Shadow DOM barriers.
+- 🌍 **Standards based:** Built entirely on native custom elements & web standards.
+- ⚡ **Reactive updates:** Prop and state changes trigger efficient, batched re-renders.
+- 🎨 **Scoped styles:** Simple & clean CSS encapsulation without complex workarounds.
+- 🖥️ **SSR friendly:** Works out of the box, with optional server-side utilities if needed.
+- 🧩 **Zero dependencies:** No runtime dependencies, runs entirely on the web platform.
+- 🔓 **Zero lock-in:** Works with every major framework, or no framework at all.
+
+
 ## Documentation
 
 See the full documentation for Elena at [elenajs.com](https://elenajs.com).
