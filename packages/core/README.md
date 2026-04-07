@@ -25,8 +25,6 @@
 
 <p align="center">Elena is a simple, tiny library for building <a href="https://elenajs.com/">Progressive Web Components</a>. Unlike most web component libraries, Elena doesn’t force JavaScript for everything. You can load HTML and CSS first, then use JavaScript to progressively add interactivity.</p>
 
-<br/>
-
 ## Features
 
 - 🔋 **Extremely lightweight:** 2.9kB minified & compressed, simple and tiny by design.
@@ -39,8 +37,6 @@
 - 🧩 **Zero dependencies:** No runtime dependencies, runs entirely on the web platform.
 - 🔓 **Zero lock-in:** Works with every major framework, or no framework at all.
 
-<br/>
-
 ## Documentation
 
 **See the full documentation for Elena at [elenajs.com](https://elenajs.com).**
@@ -49,7 +45,17 @@
 npm install @elenajs/core
 ```
 
-<br/>
+## Why was Elena created
+
+Elena was created by [@arielle](https://arielsalminen.com/) after nearly a decade of building enterprise-scale design systems with web components. The recurring pain points were often similar: accessibility issues, server-side rendering, layout shifts, flash of invisible content, React Server Components, too much reliance on client side JavaScript, and compatibility with e.g. third party analytics tools.
+
+Elena was built to solve these problems while staying grounded in web standards and what the platform natively provides. This is how [Progressive Web Components](https://arielsalminen.com/2026/progressive-web-components/) were born.
+
+## Why should I use Elena
+
+**Elena is built for teams creating component libraries and design systems.** If you need web components that work across multiple frameworks (such as [React](https://react.dev), [Next.js](https://nextjs.org), [Vue](https://vuejs.org), [Angular](https://angular.dev)), render HTML and CSS before JavaScript loads, and sidestep common issues like accessibility problems, SSR limitations, and layout shifts, Elena is built for exactly that.
+
+It handles the cross-framework complexity (prop/attribute syncing, event delegation, framework compatibility) so you can focus on building components rather than plumbing.
 
 ## Packages
 
@@ -66,19 +72,13 @@ Elena is a monorepo containing several packages published to npm under the `@ele
 
 <!-- https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md -->
 
-<br/>
-
 ## Development
 
 For more details about pull requests, commit conventions and code style, please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-<br/>
-
 ## License
 
 MIT
-
-<br/>
 
 ## Copyright
 
