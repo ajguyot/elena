@@ -1,10 +1,11 @@
+<br/>
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://elenajs.com/img/elena-dark.png" alt="Elena" width="558" height="220">
+  <source media="(prefers-color-scheme: dark)" srcset="https://elenajs.com/elena-dark.png" alt="Elena" width="127" height="156">
   </source>
-  <source media="(prefers-color-scheme: light)" srcset="https://elenajs.com/img/elena-light.png" alt="Elena" width="558" height="220">
+  <source media="(prefers-color-scheme: light)" srcset="https://elenajs.com/elena.png" alt="Elena" width="127" height="156">
   </source>
-  <img src="https://elenajs.com/img/elena-light.png" alt="Elena" width="558" height="220">
+  <img src="https://elenajs.com/elena.png" alt="Elena" width="127" height="156">
 </picture>
 
 ### Simple, tiny library for building Progressive Web Components.
@@ -24,17 +25,66 @@
 
 <p align="center">Elena is a simple, tiny library for building <a href="https://elenajs.com/">Progressive Web Components</a>. Unlike most web component libraries, Elena doesn’t force JavaScript for everything. You can load HTML and CSS first, then use JavaScript to progressively add interactivity.</p>
 
-## Documentation
+## Features
 
-See the full documentation for Elena at [elenajs.com](https://elenajs.com).
+- 🔋 **Extremely lightweight:** 2.9kB minified & compressed, simple and tiny by design.
+- 📈 **Progressively enhanced:** Renders HTML & CSS first, then hydrates with JavaScript.
+- 🫶 **Accessible by default:** Semantic HTML foundation with no Shadow DOM barriers.
+- 🌍 **Standards based:** Built entirely on native custom elements & web standards.
+- ⚡ **Reactive updates:** Prop and state changes trigger efficient, batched re-renders.
+- 🎨 **Scoped styles:** Simple & clean CSS encapsulation without complex workarounds.
+- 🖥️ **SSR friendly:** Works out of the box, with optional server-side utilities if needed.
+- 🧩 **Zero dependencies:** No runtime dependencies, runs entirely on the web platform.
+- 🔓 **Zero lock-in:** Works with every major framework, or no framework at all.
+
+## Usage
+
+To install Elena as a dependency, run:
 
 ```sh
 npm install @elenajs/core
 ```
 
-## Packages
+Then import Elena in a web component:
 
-Elena is a monorepo containing several packages published to npm under the `@elenajs` scope. These are the main packages intended for development:
+```js
+import { Elena } from "@elenajs/core";
+
+class Stack extends Elena(HTMLElement) {
+  static tagName = "my-stack";
+  static props = ["direction"];
+
+  direction = "column";
+}
+
+Stack.define();
+```
+
+**See the full documentation at [elenajs.com](https://elenajs.com).**
+
+## Why was Elena created
+
+Elena was created by [@arielle](https://arielsalminen.com/) after nearly a decade of building enterprise-scale design systems with web components. The recurring pain points were often similar: accessibility issues, server-side rendering, layout shifts, flash of invisible content, React Server Components, too much reliance on client side JavaScript, and compatibility with e.g. third party analytics tools.
+
+Elena was built to solve these problems while staying grounded in web standards and what the platform natively provides. This is how [Progressive Web Components](https://arielsalminen.com/2026/progressive-web-components/) were born.
+
+## Why should I use Elena
+
+**Elena is built for teams creating component libraries and design systems.** If you need web components that work across multiple frameworks (such as [React](https://react.dev), [Next.js](https://nextjs.org), [Vue](https://vuejs.org), [Angular](https://angular.dev)), render HTML and CSS before JavaScript loads, and sidestep common issues like accessibility problems, SSR limitations, and layout shifts, Elena is built for exactly that.
+
+It handles the cross-framework complexity (prop/attribute syncing, event delegation, framework compatibility) so you can focus on building components rather than plumbing.
+
+## Next steps
+
+- Start with the [Quick Start](https://elenajs.com/start/) guide.
+- View the [Live examples](https://elenajs.com/examples/) for demos.
+- Try Elena in the [Playground](https://elenajs.com/playground/).
+- Read how [Elena compares](https://elenajs.com/advanced/faq#how-does-elena-compare-against-other-tools) against other web component libraries.
+- Browse our [FAQ](https://elenajs.com/advanced/faq) for frequently asked questions.
+
+## Provided tools
+
+Elena is a monorepo containing several tools (13 in total!) published to npm under the `@elenajs` scope. These are the main tools intended for development:
 
 | Package | Description | Version | Stability |
 | --- | --- | --- | --- |
@@ -47,14 +97,6 @@ Elena is a monorepo containing several packages published to npm under the `@ele
 
 <!-- https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md -->
 
-## Development
-
-For more details about pull requests, commit conventions and code style, please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## License
 
-MIT
-
-## Copyright
-
-Copyright © 2026 [Ariel Salminen](https://arielsalminen.com)
+Released under the MIT License. Copyright © 2025-2026 [Ariel Salminen](https://arielsalminen.com).
