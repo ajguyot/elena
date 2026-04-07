@@ -39,16 +39,19 @@
 
 ## Documentation
 
-**See the full documentation for Elena at [elenajs.com](https://elenajs.com).**
+**See the full documentation at [elenajs.com](https://elenajs.com).**
+
+To install Elena as a dependency, run:
 
 ```sh
 npm install @elenajs/core
 ```
 
+Then import Elena in a component:
+
 ```js
 import { Elena } from "@elenajs/core";
 
-/** ░█ [ELENA]: Composite Component example */
 class Stack extends Elena(HTMLElement) {
   static tagName = "my-stack";
   static props = ["direction"];
