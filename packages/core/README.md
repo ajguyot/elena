@@ -39,8 +39,6 @@
 
 ## Documentation
 
-**See the full documentation at [elenajs.com](https://elenajs.com).**
-
 To install Elena as a dependency, run:
 
 ```sh
@@ -61,6 +59,8 @@ class Stack extends Elena(HTMLElement) {
 
 Stack.define();
 ```
+
+**See the full documentation at [elenajs.com](https://elenajs.com).**
 
 ## Why was Elena created
 
@@ -99,8 +99,4 @@ Elena is a monorepo containing several tools (13 in total!) published to npm und
 
 ## License
 
-MIT
-
-## Copyright
-
-Copyright © 2025-2026 [Ariel Salminen](https://arielsalminen.com)
+Released under the MIT License. Copyright © 2025-2026 [Ariel Salminen](https://arielsalminen.com).
