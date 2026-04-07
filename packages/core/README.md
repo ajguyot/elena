@@ -57,9 +57,17 @@ Elena was built to solve these problems while staying grounded in web standards 
 
 It handles the cross-framework complexity (prop/attribute syncing, event delegation, framework compatibility) so you can focus on building components rather than plumbing.
 
-## Packages
+## Next steps
 
-Elena is a monorepo containing several packages published to npm under the `@elenajs` scope. These are the main packages intended for development:
+- Start with the [Quick Start](https://elenajs.com/start/) guide.
+- View the [Live examples](https://elenajs.com/examples/) for demos.
+- Try Elena in the [Playground](https://elenajs.com/playground/).
+- Read how [Elena compares](https://elenajs.com/advanced/faq#how-does-elena-compare-against-other-tools) against other web component libraries.
+- Browse our [FAQ](https://elenajs.com/advanced/faq) for frequently asked questions.
+
+## Provided tools
+
+Elena is a monorepo containing several tools (13 in total!) published to npm under the `@elenajs` scope. These are the main tools intended for development:
 
 | Package | Description | Version | Stability |
 | --- | --- | --- | --- |
