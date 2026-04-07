@@ -45,6 +45,20 @@
 npm install @elenajs/core
 ```
 
+```js
+import { Elena } from "@elenajs/core";
+
+/** ░█ [ELENA]: Composite Component example */
+export default class Stack extends Elena(HTMLElement) {
+  static tagName = "my-stack";
+  static props = ["direction"];
+
+  direction = "column";
+}
+
+Stack.define();
+```
+
 ## Why was Elena created
 
 Elena was created by [@arielle](https://arielsalminen.com/) after nearly a decade of building enterprise-scale design systems with web components. The recurring pain points were often similar: accessibility issues, server-side rendering, layout shifts, flash of invisible content, React Server Components, too much reliance on client side JavaScript, and compatibility with e.g. third party analytics tools.
