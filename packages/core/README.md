@@ -37,7 +37,7 @@
 - 🧩 **Zero dependencies:** No runtime dependencies, runs entirely on the web platform.
 - 🔓 **Zero lock-in:** Works with every major framework, or no framework at all.
 
-## Documentation
+## Usage
 
 To install Elena as a dependency, run:
 
@@ -45,7 +45,7 @@ To install Elena as a dependency, run:
 npm install @elenajs/core
 ```
 
-Then import Elena in a component:
+Then import Elena in a web component:
 
 ```js
 import { Elena } from "@elenajs/core";
