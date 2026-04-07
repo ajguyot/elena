@@ -1,3 +1,4 @@
+<br/>
 <div align="center">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://elenajs.com/elena-dark.png" alt="Elena" width="127" height="156">
@@ -24,6 +25,8 @@
 
 <p align="center">Elena is a simple, tiny library for building <a href="https://elenajs.com/">Progressive Web Components</a>. Unlike most web component libraries, Elena doesn’t force JavaScript for everything. You can load HTML and CSS first, then use JavaScript to progressively add interactivity.</p>
 
+<br/>
+
 ## Features
 
 - 🔋 **Extremely lightweight:** 2.9kB minified & compressed, simple and tiny by design.
@@ -36,14 +39,17 @@
 - 🧩 **Zero dependencies:** No runtime dependencies, runs entirely on the web platform.
 - 🔓 **Zero lock-in:** Works with every major framework, or no framework at all.
 
+<br/>
 
 ## Documentation
 
-See the full documentation for Elena at [elenajs.com](https://elenajs.com).
+**See the full documentation for Elena at [elenajs.com](https://elenajs.com).**
 
 ```sh
 npm install @elenajs/core
 ```
+
+<br/>
 
 ## Packages
 
@@ -60,14 +66,20 @@ Elena is a monorepo containing several packages published to npm under the `@ele
 
 <!-- https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md -->
 
+<br/>
+
 ## Development
 
 For more details about pull requests, commit conventions and code style, please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+<br/>
 
 ## License
 
 MIT
 
+<br/>
+
 ## Copyright
 
-Copyright © 2026 [Ariel Salminen](https://arielsalminen.com)
+Copyright © 2025-2026 [Ariel Salminen](https://arielsalminen.com)
