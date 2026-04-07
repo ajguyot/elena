@@ -80,10 +80,6 @@ Elena is a monorepo containing several tools (13 in total!) published to npm und
 
 <!-- https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md -->
 
-## Development
-
-For more details about pull requests, commit conventions and code style, please see [CONTRIBUTING.md](CONTRIBUTING.md).
-
 ## License
 
 MIT
