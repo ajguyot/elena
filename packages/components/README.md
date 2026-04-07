@@ -1,10 +1,11 @@
+<br/>
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://elenajs.com/img/elena-dark.png" alt="Elena" width="558" height="220">
+  <source media="(prefers-color-scheme: dark)" srcset="https://elenajs.com/elena-dark.png" alt="Elena" width="127" height="156">
   </source>
-  <source media="(prefers-color-scheme: light)" srcset="https://elenajs.com/img/elena-light.png" alt="Elena" width="558" height="220">
+  <source media="(prefers-color-scheme: light)" srcset="https://elenajs.com/elena.png" alt="Elena" width="127" height="156">
   </source>
-  <img src="https://elenajs.com/img/elena-light.png" alt="Elena" width="558" height="220">
+  <img src="https://elenajs.com/elena.png" alt="Elena" width="127" height="156">
 </picture>
 
 ### Elena component library demonstrating how to build Progressive Web Components.
