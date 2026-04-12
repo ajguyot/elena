@@ -88,14 +88,14 @@ Elena is a monorepo containing several tools (13 in total!) published to npm und
 
 | Package | Description | Version | Stability |
 | --- | --- | --- | --- |
-| [`@elenajs/core`](https://github.com/getelena/elena/tree/main/packages/core) | Elena core runtime library. | [![npm](https://img.shields.io/npm/v/@elenajs/core.svg)](https://www.npmjs.com/package/@elenajs/core) | ![stability-release-candidate](https://img.shields.io/badge/stability-pre--release-48c9b0.svg) |
-| [`@elenajs/components`](https://github.com/getelena/elena/tree/main/packages/components) | Elena demo web components. | [![npm](https://img.shields.io/npm/v/@elenajs/components.svg)](https://www.npmjs.com/package/@elenajs/components) | ![stability-release-candidate](https://img.shields.io/badge/stability-pre--release-48c9b0.svg) |
-| [`@elenajs/bundler`](https://github.com/getelena/elena/tree/main/packages/bundler) | Elena bundler for component libraries. | [![npm](https://img.shields.io/npm/v/@elenajs/bundler.svg)](https://www.npmjs.com/package/@elenajs/bundler) | ![stability-release-candidate](https://img.shields.io/badge/stability-pre--release-48c9b0.svg) |
-| [`@elenajs/cli`](https://github.com/getelena/elena/tree/main/packages/cli) | Elena CLI for scaffolding web components. | [![npm](https://img.shields.io/npm/v/@elenajs/cli.svg)](https://www.npmjs.com/package/@elenajs/cli) | ![stability-release-candidate](https://img.shields.io/badge/stability-pre--release-48c9b0.svg) |
-| [`@elenajs/ssr`](https://github.com/getelena/elena/tree/main/packages/ssr) | Elena server-side rendering tools. | [![npm](https://img.shields.io/npm/v/@elenajs/ssr.svg)](https://www.npmjs.com/package/@elenajs/ssr) | ![stability-experimental](https://img.shields.io/badge/stability-experimental-red.svg) |
-| [`@elenajs/mcp`](https://github.com/getelena/elena/tree/main/packages/ssr) | Elena MCP server. | [![npm](https://img.shields.io/npm/v/@elenajs/mcp.svg)](https://www.npmjs.com/package/@elenajs/mcp) | ![stability-experimental](https://img.shields.io/badge/stability-experimental-red.svg) |
+| [`@elenajs/core`](https://github.com/getelena/elena/tree/main/packages/core) | Elena core runtime library. | [![npm](https://img.shields.io/npm/v/@elenajs/core.svg)](https://www.npmjs.com/package/@elenajs/core) | ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg) |
+| [`@elenajs/components`](https://github.com/getelena/elena/tree/main/packages/components) | Elena demo web components. | [![npm](https://img.shields.io/npm/v/@elenajs/components.svg)](https://www.npmjs.com/package/@elenajs/components) | ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg) |
+| [`@elenajs/bundler`](https://github.com/getelena/elena/tree/main/packages/bundler) | Elena bundler for component libraries. | [![npm](https://img.shields.io/npm/v/@elenajs/bundler.svg)](https://www.npmjs.com/package/@elenajs/bundler) | ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg) |
+| [`@elenajs/cli`](https://github.com/getelena/elena/tree/main/packages/cli) | Elena CLI for scaffolding web components. | [![npm](https://img.shields.io/npm/v/@elenajs/cli.svg)](https://www.npmjs.com/package/@elenajs/cli) | ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg) |
+| [`@elenajs/ssr`](https://github.com/getelena/elena/tree/main/packages/ssr) | Elena server-side rendering tools. | [![npm](https://img.shields.io/npm/v/@elenajs/ssr.svg)](https://www.npmjs.com/package/@elenajs/ssr) | ![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg) |
+| [`@elenajs/mcp`](https://github.com/getelena/elena/tree/main/packages/ssr) | Elena MCP server. | [![npm](https://img.shields.io/npm/v/@elenajs/mcp.svg)](https://www.npmjs.com/package/@elenajs/mcp) | ![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg) |
 
-<!-- https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md -->
+<!-- https://github.com/orangemug/stability-badges -->
 
 ## License
 
