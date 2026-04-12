@@ -4,7 +4,7 @@
  */
 export const API_CONTENT = `# Elena API Reference
 
-## \`@elenajs/core\` (Pre-release)
+## \`@elenajs/core\`
 
 \`\`\`js
 import { Elena, html, nothing, unsafeHTML } from "@elenajs/core";
@@ -98,7 +98,7 @@ Attributes that Elena adds to the host element automatically. These are not JS p
 
 ---
 
-## \`@elenajs/bundler\` (Pre-release)
+## \`@elenajs/bundler\`
 
 ### Commands
 
@@ -145,7 +145,7 @@ elena watch
 
 ---
 
-## \`@elenajs/cli\` (Pre-release)
+## \`@elenajs/cli\`
 
 \`\`\`bash
 npx elena-create
@@ -220,7 +220,7 @@ elena-mcp <project-root>
 
 ---
 
-## \`@elenajs/plugin-rollup-css\` (Pre-release)
+## \`@elenajs/plugin-rollup-css\`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
@@ -232,7 +232,7 @@ elena-mcp <project-root>
 
 ---
 
-## \`@elenajs/plugin-cem-define\` (Pre-release)
+## \`@elenajs/plugin-cem-define\`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
@@ -240,7 +240,7 @@ elena-mcp <project-root>
 
 ---
 
-## \`@elenajs/plugin-cem-prop\` (Pre-release)
+## \`@elenajs/plugin-cem-prop\`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
@@ -248,7 +248,7 @@ elena-mcp <project-root>
 
 ---
 
-## \`@elenajs/plugin-cem-tag\` (Pre-release)
+## \`@elenajs/plugin-cem-tag\`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
@@ -256,7 +256,7 @@ elena-mcp <project-root>
 
 ---
 
-## \`@elenajs/plugin-cem-typescript\` (Pre-release)
+## \`@elenajs/plugin-cem-typescript\`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|

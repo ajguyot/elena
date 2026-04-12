@@ -3,7 +3,7 @@ title: Component libraries
 description: Learn how to build and publish an Elena Progressive Web Component library using @elenajs/bundler, including configuration, bundling, and TypeScript support.
 ---
 
-# Component libraries <Badge type="warning" text="Pre-release" />
+# Component libraries
 
 **`@elenajs/bundler`** is the build tool for publishing Elena component libraries. It bundles JavaScript and TypeScript source files, minifies CSS, generates a [Custom Elements Manifest](https://custom-elements-manifest.open-wc.org/), and produces TypeScript declarations for each component.
 
@@ -255,7 +255,7 @@ Returns the Custom Elements Manifest analyzer configuration object.
 
 Runs the CEM analysis and writes `custom-elements.json`, `custom-elements.d.ts`, and per-component `.d.ts` files.
 
-## Example library <Badge type="warning" text="Pre-release" />
+## Example library
 
 **`@elenajs/components`** is a reference component library built with Elena. It demonstrates real-world component patterns and is available as a starting point for your own library.
 

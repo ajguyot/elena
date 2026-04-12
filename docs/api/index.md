@@ -6,7 +6,7 @@ description: Full API reference for all Elena packages including @elenajs/core, 
 
 # API Reference
 
-## `@elenajs/core` <Badge type="warning" text="Pre-release" />
+## `@elenajs/core`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
@@ -86,7 +86,7 @@ Attributes that Elena adds to the host element automatically. These are not JS p
 | `Invalid JSON: <value>` | An `Array` or `Object` prop received an attribute value that could not be parsed as JSON. Check that the attribute value is valid JSON. The prop will be set to `null`. |
 | `Cannot sync attrs.` | `syncAttribute()` was called with a null element reference. This usually means the inner element was not found before attribute sync ran. Check your `static element` selector. |
 
-## `@elenajs/bundler` <Badge type="warning" text="Pre-release" />
+## `@elenajs/bundler`
 
 ### Commands
 
@@ -132,7 +132,7 @@ elena watch
 | <code style="white-space:nowrap;">Bundle entry "&lt;path&gt;" does not exist.</code> | The `bundle` entry point (default `"src/index.js"`) was not found. Create the file, or set `bundle` to `false` to skip bundling. |
 | `Build error:` | Rollup encountered an error during a `watch` rebuild. The underlying error is logged directly after this message. |
 
-## `@elenajs/cli` <Badge type="warning" text="Pre-release" />
+## `@elenajs/cli`
 
 ```bash
 npx elena-create
@@ -158,7 +158,7 @@ The generated files follow all Elena authoring patterns, including JSDoc annotat
 | `clear` | `clear()` | Remove all registered component classes from the SSR registry at once. |
 | `ssr` | `ssr(html)` | Takes an HTML string, expands any registered components into full HTML, and returns the result. Full HTML documents (including `<!DOCTYPE>`) are supported. |
 
-## `@elenajs/plugin-rollup-css` <Badge type="warning" text="Pre-release" />
+## `@elenajs/plugin-rollup-css`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
@@ -168,25 +168,25 @@ The generated files follow all Elena authoring patterns, including JSDoc annotat
 | `cssStaticStylesPlugin` | `cssStaticStylesPlugin()` | Finds `static styles` class fields with template literal values and minifies the CSS inside them. |
 | `minifyCss` | `minifyCss(css, filename?)` | Minifies a CSS string using Lightning CSS. |
 
-## `@elenajs/plugin-cem-define` <Badge type="warning" text="Pre-release" />
+## `@elenajs/plugin-cem-define`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
 | `elenaDefinePlugin` | `elenaDefinePlugin()` | CEM plugin that reads `tagName` option from each Elena component class and registers it in the Custom Elements Manifest. |
 
-## `@elenajs/plugin-cem-prop` <Badge type="warning" text="Pre-release" />
+## `@elenajs/plugin-cem-prop`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
 | `elenaPropPlugin` | `elenaPropPlugin()` | CEM plugin that reads `@property` or `@prop` JSDoc tags from component class fields and creates corresponding `attributes` entries in the Custom Elements Manifest. |
 
-## `@elenajs/plugin-cem-tag` <Badge type="warning" text="Pre-release" />
+## `@elenajs/plugin-cem-tag`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
 | `elenaTagPlugin` | `elenaTagPlugin(jsdocTag)` | CEM plugin that copies a custom JSDoc tag from each component’s documentation comment into the Custom Elements Manifest. `jsdocTag` is the tag name without the `@` (e.g. `"status"` for `@status`, `"displayName"` for `@displayName`). Call it once per tag you want to extract. |
 
-## `@elenajs/plugin-cem-typescript` <Badge type="warning" text="Pre-release" />
+## `@elenajs/plugin-cem-typescript`
 
 | Export | Signature | Description |
 |--------|-----------|-------------|
