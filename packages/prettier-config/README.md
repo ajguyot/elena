@@ -1,11 +1,11 @@
 <br/>
 <div align="center">
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://elenajs.com/elena-dark.png" alt="Elena" width="127" height="156">
+  <source media="(prefers-color-scheme: dark)" srcset="https://elenajs.com/elena-v2-dark.png" alt="Elena" width="127" height="156">
   </source>
-  <source media="(prefers-color-scheme: light)" srcset="https://elenajs.com/elena.png" alt="Elena" width="127" height="156">
+  <source media="(prefers-color-scheme: light)" srcset="https://elenajs.com/elena-v2.png" alt="Elena" width="127" height="156">
   </source>
-  <img src="https://elenajs.com/elena.png" alt="Elena" width="127" height="156">
+  <img src="https://elenajs.com/elena-v2.png" alt="Elena" width="127" height="156">
 </picture>
 
 ### Shared Prettier config for Elena projects.
