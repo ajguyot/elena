@@ -24,6 +24,27 @@
   inline-size: 28px;
 }
 
+.vp-logo-version {
+  margin-inline-start: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--vp-c-text-3);
+  line-height: 1;
+  margin-block-start: 0.15em;
+}
+
+@media (max-width: 900px) {
+  .vp-logo-version {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .vp-logo-version {
+    display: block;
+  }
+}
+
 html {
   scroll-margin-top: 86px;
   scroll-behavior: smooth;
