@@ -19,37 +19,6 @@ afterAll(() => {
   console.warn = originalWarn;
 });
 
-describe("First Contentful Paint (FCP)", () => {
-  bench("Vanilla Web Component", () => {
-    const el = document.createElement("vanilla-element");
-    document.body.appendChild(el);
-    document.body.removeChild(el);
-  });
-
-  bench("Elena Progressive Web Component", () => {
-    // Elena's first visual render is pure HTML + CSS.
-    // An unregistered custom element simulates this: the browser
-    // parses the markup and applies @scope styles before JS loads.
-    const el = document.createElement("elena-unregistered");
-    document.body.appendChild(el);
-    document.body.removeChild(el);
-  });
-
-  bench("Lit Web Component", async () => {
-    const el = document.createElement("lit-bench-element");
-    document.body.appendChild(el);
-    await el.updateComplete;
-    document.body.removeChild(el);
-  });
-
-  bench("Stencil Web Component", async () => {
-    const el = document.createElement("stencil-bench-element");
-    document.body.appendChild(el);
-    await el.updateComplete;
-    document.body.removeChild(el);
-  });
-});
-
 describe("Time to interactive (TTI)", () => {
   bench("Vanilla Web Component", () => {
     const el = document.createElement("vanilla-element");
