@@ -8,7 +8,7 @@
   <img src="https://elenajs.com/elena-v2.png" alt="Elena" width="127" height="156">
 </picture>
 
-### Elena CLI for scaffolding Progressive Web Components.
+### Elena CLI for scaffolding Progressive Web Components
 
 <br/>
 

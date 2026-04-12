@@ -8,7 +8,7 @@
   <img src="https://elenajs.com/elena-v2.png" alt="Elena" width="127" height="156">
 </picture>
 
-### MCP server that exposes Elena scaffolding and authoring guidance.
+### MCP server that exposes Elena scaffolding and authoring guidance
 
 <br/>
 

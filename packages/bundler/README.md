@@ -8,7 +8,7 @@
   <img src="https://elenajs.com/elena-v2.png" alt="Elena" width="127" height="156">
 </picture>
 
-### Bundler for Progressive Web Component libraries built with Elena.
+### Bundler for Progressive Web Component libraries built with Elena
 
 <br/>
 

@@ -8,7 +8,7 @@
   <img src="https://elenajs.com/elena-v2.png" alt="Elena" width="127" height="156">
 </picture>
 
-### Simple, tiny library for building Progressive Web Components.
+### Simple, tiny library for building Progressive Web Components
 
 <br/>
 
