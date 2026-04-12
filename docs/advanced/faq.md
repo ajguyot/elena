@@ -101,7 +101,7 @@ If you want a client-side library for building portable web components, Elena mi
 
 Elena’s progressive approach gives it a significant edge on [First Contentful Paint (FCP)](https://web.dev/articles/fcp). Because Elena renders base HTML and CSS before JavaScript loads, the First Contentful Paint doesn’t depend on it at all. Once JavaScript has loaded and the components become interactive, the performance gap narrows though:
 
-<img src="/bench.webp" loading="lazy" width="3084" height="1840" alt="Elena bench test suite" />
+<img src="/bench.webp" loading="lazy" width="2744" height="1640" alt="Elena bench test suite" />
 
 These are synthetic benchmarks that measure isolated operations. Real-world performance depends on what you’re building: how many components are on the page, how often they re-render, how complex your templates are, and how your styles are structured. The benchmarks can’t reveal the full picture, but they do show where Elena’s architecture pays off: your users see content before any JavaScript has executed.
 
