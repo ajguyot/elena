@@ -280,7 +280,7 @@ Running `pnpm build` will generate the pre-rendered output.
 > [!TIP]
 > Use `await import()` for component modules rather than a static `import` statement. Elena components extend `HTMLElement`, which requires a Node.js shim that `@elenajs/ssr` installs when it loads. Dynamic imports guarantee the shim is in place first, regardless of how an import sorter may reorder your static imports.
 
-## Declarative Shadow DOM <Badge type="warning" text="Pre-release" />
+## Declarative Shadow DOM
 
 Declarative Shadow DOM lets you define a shadow root directly in HTML using a `<template shadowrootmode="open">` element. The browser attaches the shadow root during parsing, so the shadow content is visible before JavaScript loads.
 
