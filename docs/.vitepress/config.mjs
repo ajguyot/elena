@@ -88,19 +88,6 @@ export default defineConfig({
     ["link", { rel: "icon", href: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
     ["link", { rel: "apple-touch-icon", href: "/apple-touch-icon.png" }],
     ["link", { rel: "manifest", href: "/manifest.json" }],
-    ...(noIndex
-      ? []
-      : [
-          [
-            "script",
-            {
-              src: "https://cdn.usefathom.com/script.js",
-              "data-spa": "auto",
-              "data-site": "RRTFEBPA",
-              defer: "",
-            },
-          ],
-        ]),
   ],
   markdown: {
     headers: true,
