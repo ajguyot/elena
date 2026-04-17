@@ -89,12 +89,6 @@ Elena’s documentation is built with [VitePress](https://vitepress.dev), a stat
 
 Elena follows [Semantic Versioning](https://semver.org/). Under this scheme, version numbers and the way they change convey meaning about the underlying features and what has been modified from one version to the next.
 
-## Can I sponsor Elena?
-
-Elena is an MIT-licensed open source project and completely free to use. However, we understand that the project won’t remain sustainable forever without financial backing. Hence, we’re planning to set up sponsorship at [Open Collective](https://opencollective.com/elenajs) later.
-
-If you have questions regarding the [sponsorship](/about/sponsor), please reach out to [hi@elenajs.com](mailto:hi@elenajs.com).
-
 ## How can I contribute?
 
 See the [contributing guidelines](https://github.com/getelena/elena/blob/main/CONTRIBUTING.md) on GitHub.
