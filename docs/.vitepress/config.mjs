@@ -200,20 +200,8 @@ export default defineConfig({
             link: "/advanced/faq",
           },
           {
-            text: "Team",
-            link: "/about/team",
-          },
-          {
-            text: "Sponsor",
-            link: "/about/sponsor",
-          },
-          {
             text: "Releases",
             link: "https://github.com/getelena/elena/releases",
-          },
-          {
-            text: "Read the release post",
-            link: "https://arielsalminen.com/2026/progressive-web-components/",
           },
           {
             text: "Code of conduct",
