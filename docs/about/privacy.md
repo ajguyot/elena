@@ -5,19 +5,9 @@ description: Elena’s privacy policy and data practices.
 
 # Privacy policy
 
-> **Effective date:** March 19, 2026
+> **Effective date:** April 19, 2026
 
 This privacy policy describes how we handle your information across our website (https://elenajs.com), related documentation, and related services. Your privacy matters to us: we do not track individual visitors, use cookies, or collect personal information of any kind.
-
-## Website analytics
-
-This website uses [Fathom Analytics](https://usefathom.com/) to collect anonymized visitor data. Fathom is a privacy-friendly analytics tool that does not use cookies and does not track visitors across sites.
-
-When you visit this website, Fathom may briefly process your IP address to determine general location data, but this information is never stored in a way that can identify you. All visitor data is aggregated and anonymized. No personal information is collected, and visitors cannot be identified individually.
-
-We use this data solely to understand website traffic and improve the documentation. The legal basis for this processing is legitimate interest (GDPR Article 6(1)(f)).
-
-Fathom complies with GDPR, ePrivacy (PECR), COPPA, and CCPA. All data is stored and processed according to [Fathom’s privacy policy](https://usefathom.com/legal/privacy) and their data retention policies.
 
 ## Search
 
