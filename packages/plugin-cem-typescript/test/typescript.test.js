@@ -77,7 +77,7 @@ describe("moduleLinkPhase", () => {
 });
 
 describe("packageLinkPhase", () => {
-  test("generates .d.ts with fields and events", () => {
+  test("generates .d.ts with fields, events, and methods", () => {
     analyze(`
       /**
        * @event click - Programmatically fire click on the component.
@@ -95,6 +95,11 @@ describe("packageLinkPhase", () => {
            */
           this.variant = "default";
         }
+        myMethod() {}
+        myMethodWithReturnType(): string {}
+        myMethodWithArgs(arg1: string, arg2: number): string {}
+        myMethodWithOptionalArg(arg?: string): string {}
+        myMethodWithUnknownArg(arg) {}
       }
     `);
 
@@ -105,6 +110,11 @@ describe("packageLinkPhase", () => {
     expect(content).toContain("declare class Button extends HTMLElement");
     expect(content).toContain("variant?:");
     expect(content).toContain("text?:");
+    expect(content).toContain("myMethod(): void;");
+    expect(content).toContain("myMethodWithReturnType(): string;");
+    expect(content).toContain("myMethodWithArgs(arg1: string, arg2: number): string;");
+    expect(content).toContain("myMethodWithOptionalArg(arg?: string): string;");
+    expect(content).toContain("myMethodWithUnknownArg(arg: unknown): void;");
     expect(content).toContain("export type { ButtonProps }");
     expect(content).toContain("from './custom-elements.js'");
   });

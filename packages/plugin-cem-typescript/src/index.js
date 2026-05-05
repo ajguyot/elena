@@ -75,6 +75,9 @@ export function elenaTypeScriptPlugin({ outdir = "dist" } = {}) {
           m => m.kind === "field" && !m.static
         );
         const events = elementDeclaration.events ?? [];
+        const methods = (elementDeclaration.members ?? []).filter(
+          m => m.kind === "method"
+        );
 
         // Format a single class member line, optionally preceded by a JSDoc comment.
         const typedLine = (member, description) => {
@@ -88,8 +91,15 @@ export function elenaTypeScriptPlugin({ outdir = "dist" } = {}) {
         const eventLines = events.map(e =>
           typedLine(`on${e.name}?: (e: CustomEvent<never>) => void;`, e.description)
         );
+        const methodLines = methods.map(m => {
+          const params = (m.parameters ?? [])
+            .map(p => `${p.name}${p.optional ? '?' : ''}: ${p.type?.text ?? "unknown"}`)
+            .join(", ");
+          const returnType = m.return?.type?.text ?? "void";
+          return typedLine(`${m.name}(${params}): ${returnType};`, m.description);
+        });
 
-        const members = [...fieldLines, ...eventLines].join("\n");
+        const members = [...fieldLines, ...eventLines, ...methodLines].join("\n");
         const body = members ? `\n${members}\n` : "";
         const propsType = `${elementDeclaration.name}Props`;
         const content = [
